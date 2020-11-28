@@ -1,0 +1,19 @@
+.wrapperpost{
+    margin: 15px auto 15px;
+    padding: 20px;
+    border-radius: 2px; 
+    width: 800px;
+    height: auto;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.22);
+    background: rgb(206, 205, 205);
+    font-family: Arial, Helvetica, sans-serif;
+    position:relative;
+}               
+.delete{
+    border: 0;
+    width:  15px;
+    height: 15px;
+    background: rgb(247, 131, 131);
+    border-radius: 8px;
+    float: right;
+}

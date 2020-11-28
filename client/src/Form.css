@@ -1,0 +1,33 @@
+.form{
+    border: 0;
+    margin:20px auto 5px;
+    padding: 10px;
+    border-radius: 3px; 
+    word-wrap: break-word;
+    width: 420px;
+    height: 300px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+    background: rgb(177, 209, 113);
+    font-family: verdana;
+}
+.formButton{
+    border: 0;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    background: hsl(220, 73%, 64%);
+    padding: 8px;
+    margin: 0px;
+    font-size: 16px;
+    width: 100px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+.forminput{
+    border-radius: 5px;
+}
+.formtextpole{
+    border-radius: 5px;
+    resize: none;
+    width:420px !important;
+    height:165px !important;
+}

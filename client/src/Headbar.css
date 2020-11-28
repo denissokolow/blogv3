@@ -1,0 +1,28 @@
+.button{
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    background: hsl(220, 73%, 64%);
+    padding: 8px 8px;
+    font-size: 16px;
+    width: 100px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+
+.back{
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:20px auto 5px;
+    background: rgb(177, 209, 113);
+    width: 870px;
+    height: 70px;
+    border-radius: 2px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+.link{
+    width: 100px;
+    height: 38px;
+    margin: 30px;
+}
