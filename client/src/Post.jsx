@@ -5,7 +5,7 @@ import Headbar from "./Headbar";
 import "./Post.css";
 
 const postDelete = (id) => {
-  axios.delete(`http://localhost:3000/api/posts/${id}`, {id})
+  axios.delete(`http://localhost:3001/api/posts/${id}`, {id})
 }    
     
 class Post extends Component {
@@ -25,7 +25,7 @@ class Post extends Component {
   
   renderPost = async() => {
       const id = this.props.location.state.id;
-      await axios.get(`http://localhost:3000/api/posts/${id}`, {id})
+      await axios.get(`http://localhost:3001/api/posts/${id}`, {id})
       .then(post => this.setState(post.data)); 
   }   
     
@@ -36,31 +36,28 @@ class Post extends Component {
     return (
       <div>
         <Headbar />  
-        <div className="wrapperpost">
+        <div className = "wrapper-post">
+            <div className = "nameplate-post">
+              <b>Author:</b> &nbsp; {this.state.author}
+            </div>
+            <div className = "nameplate-post">
+              <b>Date:</b> &nbsp; {this.state.date}
+            </div>
+            <div className = "nameplate-post">
+              <b>Title:</b> &nbsp; {this.state.title}
+            </div>
+            <div className = "post-text-pole">
+                {this.state.content}
+            </div>
             <button
                     onClick= { () => {
                                        this.setState({redir: true})
                                        postDelete(this.state._id)
                                       }}
-                    className = "delete"
+                    className = "delete-post"
                     type = "submit"
-                    >               
+                    > delete              
             </button>
-            <div>
-              <b>Author:</b> {this.state.author}
-            </div>
-            <div>
-              <b>Date:</b> {this.state.date}
-            </div>
-            <div>
-              <b>Title:</b> {this.state.title}
-            </div>
-            <div>
-              <b>Message:</b><br></br>
-              <div className = "posttext">
-                {this.state.content}
-              </div>
-            </div>
          </div>
          </div>
         )}

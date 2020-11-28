@@ -2,10 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
-const getPosts = require('../controllers/get-posts.js.js');
+const getPosts = require('../controllers/get-posts.js');
 const getPost = require('../controllers/get-post.js');
-const createPost = require('../controllers/create-post.js.js');
-const deletePost = require('../controllers/delete-post.js.js');
+const createPost = require('../controllers/create-post.js');
+const deletePost = require('../controllers/delete-post.js');
 
 router
     .route('/api/posts/')

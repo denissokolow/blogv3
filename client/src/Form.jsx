@@ -27,7 +27,7 @@ class addForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/api/posts',{
+    axios.post('http://localhost:3001/api/posts',{
       author: this.state.author,
       date: `${(new Date()).toLocaleTimeString() + ", " + (new Date()).toLocaleDateString()}`,
       title: this.state.title,
@@ -78,7 +78,7 @@ class addForm extends Component {
           <input 
                 className= "formButton"
                 type="submit" 
-                value="Отправить" 
+                value="send" 
           />
         </form>  
       </div>

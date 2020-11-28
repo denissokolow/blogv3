@@ -1,12 +1,22 @@
 .button{
-    color: #fff;
+    color: rgb(0, 0, 0);
     border: 0;
     border-radius: 2px;
-    background: hsl(220, 73%, 64%);
+    background:hsl(220, 100%, 84%);
     padding: 8px 8px;
     font-size: 16px;
     width: 100px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+.button:hover{
+    color: rgb(0, 0, 0);
+    border: 0;
+    border-radius: 2px;
+    background:hsl(220, 100%, 84%);
+    padding: 8px 8px;
+    font-size: 16px;
+    width: 100px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.22);
 }
 
 .back{
@@ -15,8 +25,7 @@
     align-items: center;
     justify-content: center;
     margin:20px auto 5px;
-    background: rgb(177, 209, 113);
-    width: 870px;
+    background: rgb(204, 228, 156);
     height: 70px;
     border-radius: 2px;
     box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
