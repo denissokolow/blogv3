@@ -6,17 +6,20 @@ const getPosts = require('../controllers/get-posts.js');
 const getPost = require('../controllers/get-post.js');
 const createPost = require('../controllers/create-post.js');
 const deletePost = require('../controllers/delete-post.js');
+const login = require('../controllers/login.js');
 
 router
     .route('/api/posts/')
     .get(getPosts)
     .post(createPost);
-
 router
     .route('/api/posts/:_id')
     .get(getPost)
     .delete(deletePost)
 router
     .route('newpost/')
+router
+    .route('/api/login')
+    .get(login)
 
 module.exports = router;
