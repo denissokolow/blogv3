@@ -1,6 +1,6 @@
 .wrapper-post{
         display: flex;
-        width: 80%;
+        width: 50%;
         flex-wrap: wrap;
         align-content: flex-start;
         margin: 15px auto 15px;

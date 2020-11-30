@@ -5,14 +5,16 @@ import "./Login.css";
 
  //принимаем и передаем логин и пароль на /api/login, проверяем его на пустоту, возвращаем logOn тру или фолс
 const loginTryOn = (log, pas) =>{
-     console.log("получили логин и пароль из инпутов", log, pas)
-     axios.get(`http://localhost:3001/api/login`, { params: {login: log, password: pas}})
+     console.log("GET получил логин и пароль из инпутов", "логин: ",log, "пароль:", pas)
+     axios.get('http://localhost:3001/api/login/', {params:{log: log, pas:pas}})
     }
-
-//принимаем и передаем логин и пароль, проверяем на пустоту, сверяем с базой, возвращаем удачную регистрацию или дубль
-const regTry = () => {
+           
     
-}
+//принимаем и передаем логин и пароль, проверяем на пустоту, сверяем с базой, возвращаем удачную регистрацию или дубль
+const regTry = (log, pas) =>{
+    console.log("POST получил логин и пароль из инпутов", "логин: ",log, "пароль:", pas)
+    axios.post(`http://localhost:3001/api/login/`, {log, pas})
+         }
 
 class Login extends Component {
     constructor(props) {
@@ -29,7 +31,7 @@ class Login extends Component {
    
     render() {  
         return (
-        <div>
+        <div className="back-login">
         {this.state.logOn ?
             <div className="login-div">
                 <input
@@ -38,7 +40,11 @@ class Login extends Component {
                     type="text"
                     placeholder="login" />
                 <button 
-                    onClick= { () => loginTryOn(`${this.login.value}, ${this.password.value}`)} //передаем логин и пароль для авторизации
+                    onClick= { () => {
+                        const log= `${this.login.value}`
+                        const pas= `${this.password.value}`
+                        loginTryOn(log, pas)
+                    }}
                     type="button" 
                     className="login-button"
                     > login </button>
@@ -50,7 +56,11 @@ class Login extends Component {
                     placeholder="password" />
 
                 <button
-                    onClick= { () => regTry()} //передаем логин и пароль для регистрации
+                    onClick= { () => {
+                        const log= `${this.login.value}`
+                        const pas= `${this.password.value}`
+                        regTry(log,pas)
+                    }} //передаем логин и пароль для регистрации
                     type="button" 
                     className="reg-button"
                     > register</button>
@@ -65,6 +75,4 @@ class Login extends Component {
 
 export default Login;
 
-//this.setState({
-    // logOn : !this.state.logOn
- //})
+

@@ -7,6 +7,7 @@ const getPost = require('../controllers/get-post.js');
 const createPost = require('../controllers/create-post.js');
 const deletePost = require('../controllers/delete-post.js');
 const login = require('../controllers/login.js');
+const register = require('../controllers/register.js');
 
 router
     .route('/api/posts/')
@@ -19,7 +20,10 @@ router
 router
     .route('newpost/')
 router
-    .route('/api/login')
+    .route('/api/login/')
     .get(login)
+router
+    .route('/api/login/')   
+    .post(register)
 
 module.exports = router;

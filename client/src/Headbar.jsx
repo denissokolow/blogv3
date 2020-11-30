@@ -8,6 +8,7 @@ class Headbar extends Component {
   render() {  
     return (
       <div className= "back">  
+      <div className= "btn-div">
         <Link to="/" className = "link" style={{ textDecoration: 'none' }}>
               <button type="button" className = "button">
                 Home
@@ -18,6 +19,7 @@ class Headbar extends Component {
                 New post
               </button>
         </Link>
+      </div>
         <Login />
       </div>
     );  

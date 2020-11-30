@@ -1,9 +1,10 @@
 const User = require('../model/user.js');
 
 module.exports = async (req, res) => {
-    console.log ({req});
+    //console.log (req.query.log);
+    //console.log (req.query.pas);
     
-    //const newUser = new User({ login, password});
-    //await newUser.save();
-    //r.res.send('Юзер добавлен');
+    
+    
+    
 }
