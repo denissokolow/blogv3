@@ -56,7 +56,7 @@ class Post extends Component {
                                       }}
                     className = "delete-post"
                     type = "submit"
-                    > delete              
+                    > delete               
             </button>
          </div>
          </div>

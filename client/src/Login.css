@@ -6,17 +6,18 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    width: 40%;
-    height: 80%;
-    margin: 5px;
-    padding: 5px;
+    width: 50%;
+    max-width: 80%;
+    height: 100%;
+    margin: 1px;
+    padding: 15px;
     border-radius: 5px;
 }
 .login{
     display: flex;
-    width: 50%;
-    margin-top: 10px;
-    height: 30%;
+    max-width: 50%;
+    margin-top: 3px;
+    height: auto;
     border-width: 1px; 
     border-color: black; 
     border-radius: 3px;
@@ -24,9 +25,9 @@
 }
 .password{
     display: flex;
-    width: 50%;
-    margin-top: 10px;
-    height: 30%;
+    max-width: 50%;
+    margin-top: 3px;
+    height: auto;
     border-width: 1px; 
     border-color: black; 
     border-radius: 3px;
@@ -36,7 +37,7 @@
     display: flex;
     text-decoration: none;
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 3px;
     border: 0;
     width:  45px;
     height: auto;
@@ -51,7 +52,7 @@
     display: flex;
     text-decoration: none;
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 3px;
     border: 0;
     width:  45px;
     height: auto;
@@ -66,7 +67,7 @@
 .reg-button{
     display: flex;
     text-decoration: none;
-    margin-top: 5%;
+    margin-top: 3px;
     margin-left: 5%;
     border: 0;
     width:  65px;
@@ -81,7 +82,7 @@
 .reg-button:hover{
     display: flex;
     text-decoration: none;
-    margin-top: 5%;
+    margin-top: 3px;
     margin-left: 5%;
     border: 0;
     width:  65px;
@@ -93,4 +94,22 @@
     padding: 3px;
     color: black; 
     font-weight: bold;
+}
+.userplate{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 50%;
+    height: 80%;
+    margin: 5px;
+    padding: 5px;
+}
+.status{
+    display: flex;
+    max-width: 50%;
+    margin-top: 5px;
+    color: hsl(0, 95%, 74%);
+    font-size: 12px;
+    font-weight: bold;
+    word-wrap: break-word;
 }
