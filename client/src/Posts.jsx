@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Posts.css";
@@ -7,14 +8,14 @@ const postDelete = (id) => {
   axios.delete(`http://localhost:3001/api/posts/${id}`, {id})
 }
 
-class Posts extends Component {
+class Posts extends Component{
     constructor(props) {
       super(props);
       this.state = {
                     posts:[]
                   };
-    }
-
+      
+                }
     componentDidMount() {
       axios.get('http://localhost:3001/api/posts')
       .then (res => res.data)
@@ -27,13 +28,13 @@ class Posts extends Component {
       .then (posts => this.setState( {posts} ));
     }  
     
-
-    render(){
+    render(){ 
+      const { loginOnOff } = this.props;
       return (
-        <div className="Posts" >
+        <div className="Posts" > 
+        <div> { loginOnOff } </div>
         {this.state.posts.slice(0).reverse().map(post =>
           <div key={post.id} className="wrapper-posts">
-           
             <div className="nameplate-posts">
               <b>Author:</b> &nbsp;{post.author}
             </div>
@@ -46,12 +47,15 @@ class Posts extends Component {
             <div className = "text-pole-posts">
                 {post.content}
             </div>
+            { loginOnOff ?
             <button
                     onClick= { () => postDelete(post._id)}
                     className = "delete-posts"
                     type = "submit"
                     > delete
             </button>
+            : null  
+            } 
             <Link to = {{
                         pathname: `api/posts/${post._id}`,
                         state: {id : post._id}
@@ -62,5 +66,9 @@ class Posts extends Component {
       );
     };
 }
-  
-export default Posts;
+
+const mapStateToProps = state =>  ({
+  loginOnOff: state.auth.login
+});
+
+export default connect (mapStateToProps)(Posts);

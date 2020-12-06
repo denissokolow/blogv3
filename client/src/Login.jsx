@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { status as statusLogin} from './actions/auth';
 import { Redirect } from "react-router";
 import axios from 'axios';
 import "./Login.css";
@@ -8,20 +10,24 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-                      logOn: false,
+                      LogOn: false,
                       user:'',
                       login: '',
                       password:'',
                       status:''
                     };
-                    this.regTry = this.regTry.bind(this);
-                }
+        this.regTry = this.regTry.bind(this);
+                        }
     loginTryOn = (log, pas) =>{
         axios.get('http://localhost:3001/api/login/', {params:{log: log, pas:pas}})
         .then(dta => dta.data)
-        .then(param => this.setState(param))
-        }
-
+        .then(param => {
+                        this.setState(param);
+                        console.log('передаем параметр', param.LogOn);
+                        this.props.status(param.LogOn);
+        })
+    }
+    
     regTry = (log, pas) => {
         axios.post(`http://localhost:3001/api/login/`, { log, pas })
         .then(dta => {
@@ -31,10 +37,12 @@ class Login extends Component {
         )}
     
     render() {  
+        const { loginOnOff } = this.props;
+        console.log('статус логинонофф', loginOnOff);
         return (
         <div className="back-login">
-        {!this.state.logOn ?
-            <div className="login-div">
+        { !this.state.LogOn ?
+                <div className="login-div">
                 <input
                     className="login"
                     ref={ref => this.login = ref}
@@ -77,6 +85,15 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    loginOnOff: state.auth.login,
+});
+
+const mapDispatchToProps  = dispatch => ({
+    status: (stat) => dispatch(statusLogin(stat))
+});
+
+
+export default connect (mapStateToProps, mapDispatchToProps)(Login);
 
 

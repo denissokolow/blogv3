@@ -1,0 +1,1 @@
+export const AUTH_ON_OFF = 'AUTH_ON_OFF';
