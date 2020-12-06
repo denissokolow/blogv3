@@ -32,7 +32,6 @@ class Posts extends Component{
       const { loginOnOff } = this.props;
       return (
         <div className="Posts" > 
-        <div> { loginOnOff } </div>
         {this.state.posts.slice(0).reverse().map(post =>
           <div key={post.id} className="wrapper-posts">
             <div className="nameplate-posts">

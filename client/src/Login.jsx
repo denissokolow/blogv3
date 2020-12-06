@@ -41,7 +41,7 @@ class Login extends Component {
         console.log('статус логинонофф', loginOnOff);
         return (
         <div className="back-login">
-        { !this.state.LogOn ?
+        { !loginOnOff ?
                 <div className="login-div">
                 <input
                     className="login"
