@@ -98,15 +98,30 @@
 .userplate{
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    width: 50%;
-    height: 80%;
-    margin: 5px;
+    width: 60%;
+    height: 40%;
+    margin-top: 20%;
     padding: 5px;
+    /*background:hsl(220, 100%, 84%);*/
+}
+.userplate-name{
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    
+}
+.userplate-btn{
+    display: flex;
+    background:rgb(194, 167, 144);
+    border: 0;
+    border-radius: 8px;
+
+
 }
 .status{
     display: flex;
-    max-width: 50%;
+    max-width: 90%;
     margin-top: 5px;
     color: hsl(0, 95%, 74%);
     font-size: 12px;

@@ -23,8 +23,8 @@ class Login extends Component {
         .then(dta => dta.data)
         .then(param => {
                         this.setState(param);
-                        console.log('передаем параметр', param.LogOn);
-                        this.props.status(param.LogOn);
+                        console.log('передаем параметр', param.user);
+                        this.props.status({ login: param.LogOn, user: param.user});
         })
     }
     
@@ -38,7 +38,8 @@ class Login extends Component {
     
     render() {  
         const { loginOnOff } = this.props;
-        console.log('статус логинонофф', loginOnOff);
+        const { username } = this.props;
+        console.log('статусы', loginOnOff, username);
         return (
         <div className="back-login">
         { !loginOnOff ?
@@ -76,9 +77,9 @@ class Login extends Component {
                 <div className="status">{this.state.status}</div>
             </div>
             : <div className="userplate"> 
-                    {this.state.user}
-                    Logout 
-                    </div>
+              <div className="userplate-name">{ username }</div>
+              <button className="userplate-btn">logout</button>
+              </div>
          }
         </div>
         );
@@ -87,6 +88,7 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     loginOnOff: state.auth.login,
+    username: state.auth.user,
 });
 
 const mapDispatchToProps  = dispatch => ({

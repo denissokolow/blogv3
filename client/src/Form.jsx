@@ -49,14 +49,18 @@ class addForm extends Component {
     return (
       <div> 
         <Headbar />  
-        <form className="form" onSubmit={this.handleSubmit}>  
-          <input 
+        <form className="form" onSubmit={this.handleSubmit}>
+          <p 
+          
+          
+          >author</p>  
+          {/*<input 
                  className= "forminput"
                  name="author"
                  type="text" 
                  value={this.state.author} 
                  onChange={this.handleChange} 
-                 placeholder="nickname"/>
+          placeholder="nickname"/>*/}
           <br/><br/>
           <input 
                  className= "forminput"

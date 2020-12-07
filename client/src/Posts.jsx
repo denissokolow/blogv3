@@ -31,7 +31,7 @@ class Posts extends Component{
     render(){ 
       const { loginOnOff } = this.props;
       return (
-        <div className="Posts" > 
+        <div className="Posts" >  
         {this.state.posts.slice(0).reverse().map(post =>
           <div key={post.id} className="wrapper-posts">
             <div className="nameplate-posts">
@@ -46,6 +46,10 @@ class Posts extends Component{
             <div className = "text-pole-posts">
                 {post.content}
             </div>
+            <Link to = {{
+                        pathname: `api/posts/${post._id}`,
+                        state: {id : post._id}
+                        }} className= "detail-posts" > detail </ Link> 
             { loginOnOff ?
             <button
                     onClick= { () => postDelete(post._id)}
@@ -55,10 +59,7 @@ class Posts extends Component{
             </button>
             : null  
             } 
-            <Link to = {{
-                        pathname: `api/posts/${post._id}`,
-                        state: {id : post._id}
-                        }} className= "detail-posts" > detail </ Link>
+            
          </div>
         )}
       </div>
