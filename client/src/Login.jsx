@@ -35,6 +35,10 @@ class Login extends Component {
                        setTimeout(()=>this.setState({status:''}), 2000);
             }   
         )}
+    logOut= () =>{
+        this.setState({ LogOn: false, user: '', status: '' });
+        this.props.status({ login: false, user: '' })
+    }
     
     render() {  
         const { loginOnOff } = this.props;
@@ -78,7 +82,9 @@ class Login extends Component {
             </div>
             : <div className="userplate"> 
               <div className="userplate-name">{ username }</div>
-              <button className="userplate-btn">logout</button>
+              <button className="userplate-btn"
+                      onClick= { () => this.logOut()}    
+              >logout</button>
               </div>
          }
         </div>

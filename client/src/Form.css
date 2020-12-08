@@ -10,16 +10,16 @@
     width: 50%;
     height: 400px;
     box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
-    background: rgb(206, 205, 205);
+    background: rgb(178, 204, 125);
     font-family: verdana;
 }
 .formButton{
     display: flex;
     text-decoration: none;
     border: 0;
-    width:  auto;
+    width:  45px;
     height: auto;
-    background:hsl(220, 100%, 84%);
+    background:rgb(194, 167, 144);
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
     font-size: 16px;
@@ -27,14 +27,15 @@
     margin-top: auto;
     padding: 5px;
     color: black;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
 }
 .formButton:hover{
     display: flex;
     text-decoration: none;
     border: 0;
-    width:  auto;
+    width:  45px;
     height: auto;
-    background:hsl(220, 100%, 84%);
+    background:rgb(194, 167, 144);
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
     font-size: 16px;
@@ -43,6 +44,7 @@
     padding: 5px;
     color: black;
     font-weight: bold;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
 }
 .forminput{
     display: flex;
@@ -53,14 +55,22 @@
     border-color: black; 
     border-radius: 3px;
     background: rgb(229, 229, 230);
+    clear:both;
 }
 .formtextpole{
     display: flex;
     width: 100% !important;
-    height: 70% !important;
+    height: 75% !important;
     border-radius: 5px;
-    margin: 3px;
+    margin: 2px;
     resize: none;
     background: rgb(229, 229, 230);
      
+}
+.author-div{
+    display: flex;
+    width: 50%;
+    margin-left: 5px;
+    clear:both;
+    font-weight: bold;
 }

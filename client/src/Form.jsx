@@ -1,6 +1,7 @@
 import React, { Component } from "react";  
 import axios from "axios";
 import { Redirect } from "react-router";
+import { connect } from 'react-redux';
 import Headbar from "./Headbar";
 import "./Form.css";
 
@@ -45,15 +46,16 @@ class addForm extends Component {
   render() {  
     if (this.state.validate) {
       return <Redirect push to="/" />
-    }   
+    }
+    const { username } = this.props;
+    this.state.author =  username;
     return (
       <div> 
         <Headbar />  
         <form className="form" onSubmit={this.handleSubmit}>
-          <p 
-          
-          
-          >author</p>  
+          <div className = "author-div"> 
+               { username }
+         </div>
           {/*<input 
                  className= "forminput"
                  name="author"
@@ -61,7 +63,7 @@ class addForm extends Component {
                  value={this.state.author} 
                  onChange={this.handleChange} 
           placeholder="nickname"/>*/}
-          <br/><br/>
+          
           <input 
                  className= "forminput"
                  name="title"
@@ -91,4 +93,8 @@ class addForm extends Component {
   }
 }
 
-export default addForm;
+const mapStateToProps = state => ({
+   username: state.auth.user,
+});
+
+export default connect (mapStateToProps)(addForm);

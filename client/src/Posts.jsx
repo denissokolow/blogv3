@@ -49,7 +49,7 @@ class Posts extends Component{
             <Link to = {{
                         pathname: `api/posts/${post._id}`,
                         state: {id : post._id}
-                        }} className= "detail-posts" > detail </ Link> 
+                        }} className= "detail-posts" > detail </ Link>                         
             { loginOnOff ?
             <button
                     onClick= { () => postDelete(post._id)}
