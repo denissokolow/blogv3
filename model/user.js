@@ -8,6 +8,7 @@ mongoose.set('useUnifiedTopology', true);
 module.exports = mongoose.model('User', new mongoose.Schema({
     
     login: String,
-    password: String
+    password: String,
+    salt: String
         
 }));

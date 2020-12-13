@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router";
+import { connect } from 'react-redux';
 import axios from 'axios';
 import Headbar from "./Headbar";
 import "./Post.css";
-
-const postDelete = (id) => {
-  axios.delete(`http://localhost:3001/api/posts/${id}`, {id})
-}    
-    
+  
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -18,42 +15,52 @@ class Post extends Component {
                   title:'',
                   content:''
                 };
+  this.postDelete = this.postDelete.bind(this);
   }
   componentDidMount() {
     this.renderPost();
   }
+
+  postDelete = (id) => {
+    this.setState({redir: true});
+    axios.delete(`http://localhost:3001/api/post/${id}`, { id });
+    }
   
   renderPost = async() => {
+      console.log(this.props.location.state.id);
       const id = this.props.location.state.id;
-      await axios.get(`http://localhost:3001/api/posts/${id}`, {id})
+      await axios.get(`http://localhost:3001/api/post/${id}`, {id})
       .then(post => this.setState(post.data)); 
-  }   
+  }
+  
+  componentDidUpdate() {
+    if (this.state.redir) {
+      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+      .then(res => res.data)
+      .then(posts => this.setState({ posts }));
+    }
+  }
     
   render() {
-    if (this.state.redir) {
-      return <Redirect push to="/" />
-    }  
+    const { username } = this.props;
+    if (this.state.redir) { return <Redirect push to="/" /> }  
     return (
       <div>
         <Headbar />  
         <div className = "wrapper-post">
-            <div className = "nameplate-post">
-              <b>Author:</b> &nbsp; {this.state.author}
-            </div>
+          <div className = "nameplate-post-div">
             <div className = "nameplate-post">
               <b>Date:</b> &nbsp; {this.state.date}
             </div>
             <div className = "nameplate-post">
               <b>Title:</b> &nbsp; {this.state.title}
             </div>
+            </div>
             <div className = "post-text-pole">
                 {this.state.content}
             </div>
             <button
-                    onClick= { () => {
-                                       this.setState({redir: true})
-                                       postDelete(this.state._id)
-                                      }}
+                    onClick= { () => {this.postDelete(this.state._id)}}
                     className = "delete-post"
                     type = "submit"
                     > delete               
@@ -64,4 +71,8 @@ class Post extends Component {
       
  }     
 
-export default Post;
+ const mapStateToProps = state => ({
+  username: state.auth.user,
+});
+
+export default connect (mapStateToProps)(Post);

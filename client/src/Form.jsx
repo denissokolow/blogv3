@@ -30,7 +30,7 @@ class addForm extends Component {
     event.preventDefault();
     axios.post('http://localhost:3001/api/posts',{
       author: this.state.author,
-      date: `${(new Date()).toLocaleTimeString() + ", " + (new Date()).toLocaleDateString()}`,
+      date: `${(new Date()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ", " + (new Date()).toLocaleDateString()}`,
       title: this.state.title,
       content: this.state.content,
      });
@@ -43,27 +43,22 @@ class addForm extends Component {
      });
   }
   
-  render() {  
+  componentDidUpdate() {
     if (this.state.validate) {
-      return <Redirect push to="/" />
+      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+      .then(res => res.data)
+      .then(posts => this.setState({ posts }));
     }
+  }
+  
+  render() {  
+    if (this.state.validate) {return <Redirect push to="/" />}
     const { username } = this.props;
     this.state.author =  username;
     return (
       <div> 
         <Headbar />  
         <form className="form" onSubmit={this.handleSubmit}>
-          <div className = "author-div"> 
-               { username }
-         </div>
-          {/*<input 
-                 className= "forminput"
-                 name="author"
-                 type="text" 
-                 value={this.state.author} 
-                 onChange={this.handleChange} 
-          placeholder="nickname"/>*/}
-          
           <input 
                  className= "forminput"
                  name="title"

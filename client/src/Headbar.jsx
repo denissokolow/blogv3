@@ -7,7 +7,7 @@ import "./Headbar.css";
 
 class Headbar extends Component {
   
-  render() {  
+  render() {   
     const { loginOnOff } = this.props;
     return (
       <div className= "back">
@@ -25,8 +25,10 @@ class Headbar extends Component {
         </Link>
       </div>
       : <div className = "img-div"> 
-          <img src= { logo } /> 
-          <div className = "title-div">Avocado Blog</div>
+            <img src= { logo } /> 
+        <div className = "title-div">
+            Avo.cat.o Blog
+        </div>
         </div> 
       }
         <Login />
