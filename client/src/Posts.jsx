@@ -24,83 +24,84 @@ class Posts extends Component {
 
   postDelete = (id) => {
     axios.delete(`http://localhost:3001/api/post/${id}`, { id });
-    if (this.state.posts.length >= 0){
-    const oldposts = this.state.posts;
-    const newposts = oldposts.filter(i => i._id !== id);
-    this.setState({ posts: newposts });
+    if (this.state.posts.length >= 0) {
+      const oldposts = this.state.posts;
+      const newposts = oldposts.filter(i => i._id !== id);
+      this.setState({ posts: newposts });
     }
   }
 
 
   loginTryOn = (log, pas) => {
-    if (log == '' || pas =='' ){
+    if (log == '' || pas == '') {
       this.setState({ status: 'Заполните все поля' })
-    }else{
-    axios.get('http://localhost:3001/api/login/', { headers: { log: log, pas: pas } })
-      .then(dta => dta.data)
-      .then(param => {
-        this.setState(param);
-        setTimeout(() => this.setState({ status: '' }), 2000);
-        this.props.status({ login: param.LogOn, user: param.user });
-        axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
-          .then(res => res.data)
-          .then(posts => this.setState({ posts }));
-      })
+    }else {
+      axios.get('http://localhost:3001/api/login/', { headers: { log: log, pas: pas } })
+        .then(dta => dta.data)
+        .then(param => {
+          console.log("сервер вернул", param);
+          this.setState(param);
+          setTimeout(() => this.setState({ status: '' }), 2000);
+          this.props.status({ login: param.LogOn, user: param.user });
+          axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+            .then(res => res.data)
+            .then(posts => this.setState({ posts }));
+        })
     }
   }
 
   regTry = (log, pas) => {
-    if (log == '' || pas =='' ){
+    if (log == '' || pas == '') {
       this.setState({ status: 'Заполните все поля' })
-    }else if(log.length > 10 || pas.length > 10){
+    } else if (log.length > 10 || pas.length > 10) {
       this.setState({ status: 'Логин и пароль должны быть не длиннее 10 символов' })
-    }else{
-    axios.post(`http://localhost:3001/api/login/`, { log, pas })
-      .then(dta => {
-        this.setState(dta.data);
-        setTimeout(() => this.setState({ status: '' }), 2000);
-      })
-     }
+    } else {
+      axios.post(`http://localhost:3001/api/login/`, { log, pas })
+        .then(dta => {
+          this.setState(dta.data);
+          setTimeout(() => this.setState({ status: '' }), 2000);
+        })
     }
-  
-  componentDidMount() {
-    if (this.state.posts.length >= 0){
-    axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
-      .then(res => res.data)
-      .then(posts => this.setState({ posts }));
   }
-}
+
+  componentDidMount() {
+    if (this.state.posts.length >= 0) {
+      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+        .then(res => res.data)
+        .then(posts => this.setState({ posts }));
+    }
+  }
   render() {
     const { loginOnOff } = this.props;
     const { username } = this.props;
     return (
-      <div className = "pole">
+      <div className="pole">
         { loginOnOff ?
           <div className="Posts" >
             {this.state.posts.slice(0).reverse().map(post =>
               <div key={post.id} className="wrapper-posts">
-                <div className = "nameplate-posts-div">
-                <div className="nameplate-posts">
-                  <b>Date:</b> &nbsp; {post.date}
-                </div>
-                <div className="nameplate-posts">
-                  <b>Titile:</b> &nbsp; {post.title}
-                </div>
+                <div className="nameplate-posts-div">
+                  <div className="nameplate-posts">
+                    <b>Date:</b> &nbsp; {post.date}
+                  </div>
+                  <div className="nameplate-posts">
+                    <b>Titile:</b> &nbsp; {post.title}
+                  </div>
                 </div>
                 <div className="text-pole-posts">
                   {post.content}
                 </div>
-                <div className = "button-div">
-                <button
-                  onClick={() => {this.postDelete(post._id)}}
-                  className="delete-posts"
-                  type="submit"
-                > delete
+                <div className="button-div">
+                  <button
+                    onClick={() => { this.postDelete(post._id) }}
+                    className="delete-posts"
+                    type="submit"
+                  > delete
                 </button>
-                <Link to={{
-                  pathname: `api/posts/${post._id}`,
-                  state: { id: post._id }
-                }} className="detail-posts" > detail </ Link>
+                  <Link to={{
+                    pathname: `api/posts/${post._id}`,
+                    state: { id: post._id }
+                  }} className="detail-posts" > detail </ Link>
                 </div>
               </div>
             )}
@@ -108,12 +109,12 @@ class Posts extends Component {
           : <form className="login-div">
             <input
               className="login"
-              name= "login"
+              name="login"
               maxLength="15"
               ref={ref => this.login = ref}
               type="text"
-              placeholder="login" 
-              required/>
+              placeholder="login"
+              required />
             <button
               onClick={() => {
                 const log = `${this.login.value}`
@@ -125,12 +126,12 @@ class Posts extends Component {
             > login </button>
             <input
               className="password"
-              name= "password"
+              name="password"
               maxLength="15"
               ref={ref => this.password = ref}
               type="password"
-              placeholder="password" 
-              required/>
+              placeholder="password"
+              required />
             <button
               onClick={() => {
                 const log = `${this.login.value}`

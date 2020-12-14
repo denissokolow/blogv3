@@ -7,11 +7,9 @@ module.exports = async (req, res) => {
     const user = await User.findOne({ "login": login });
     if (user) {
         req.res.send({ status: "Польователь с таким логином уже зарегестрирован" });
-
     } else {
-        const salt = bcrypt.genSaltSync(7);
-        password = bcrypt.hashSync(pass, salt);
-        const newUser = new User({ login, password, salt });
+        password = bcrypt.hashSync(pass, 7);
+        const newUser = new User({ login, password });
         await newUser.save();
         req.res.send({ status: "Вы успешно зарегестрировались, можете войти" });
     }
