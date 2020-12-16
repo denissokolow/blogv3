@@ -1,6 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
+const checkAuth = require ('../middleware/checkAuth');
 
 const getPosts = require('../controllers/get-posts.js');
 const getPost = require('../controllers/get-post.js');
@@ -11,14 +12,14 @@ const register = require('../controllers/register.js');
 
 router
     .route('/api/posts/:username')
-    .get(getPosts)
+    .get(checkAuth, getPosts)
 router
     .route('/api/posts/')   
-    .post(createPost);
+    .post(checkAuth, createPost);
 router
     .route('/api/post/:_id')
     .get(getPost)
-    .delete(deletePost)
+    .delete(checkAuth, deletePost)
 router
     .route('newpost/')
 router
