@@ -11,7 +11,7 @@ const register = require('../controllers/register.js');
 
 router
     .route('/api/posts/:username')
-    .get(checkAuth, getPosts)
+    .get(getPosts)
 router
     .route('/api/posts/')   
     .post(checkAuth, createPost)
@@ -23,7 +23,7 @@ router
     .route('newpost/')
 router
     .route('/api/login/')
-    .get(login)
+    .get((req,res) => res.send("в роут приходит"))
 router
     .route('/api/login/')   
     .post(register)
