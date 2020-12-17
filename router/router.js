@@ -1,8 +1,7 @@
 
 const express = require('express');
-const router = express.Router();
 const checkAuth = require ('../middleware/checkAuth');
-
+const router = express.Router();
 const getPosts = require('../controllers/get-posts.js');
 const getPost = require('../controllers/get-post.js');
 const createPost = require('../controllers/create-post.js');
@@ -15,7 +14,7 @@ router
     .get(checkAuth, getPosts)
 router
     .route('/api/posts/')   
-    .post(checkAuth, createPost);
+    .post(checkAuth, createPost)
 router
     .route('/api/post/:_id')
     .get(getPost)

@@ -11,8 +11,12 @@ module.exports = async (req, res) => {
     if (user){          
         varPas=bcrypt.compareSync(password, user.password);
         if (varPas) {
-                   req.session.auth	= 'ok';
+                   console.log("req session в логине до", req.session);
+                   req.session.auth	= true;
                    req.session.login	= login;
+                   console.log( req.session.auth,  req.session.login);
+                   req.session.save();
+                   console.log("req session в логине после", req.session);
                    //const token = jwt.sign({
                    //                       id: user._id
                    //                       }, key, {expiresIn: "1h"});
