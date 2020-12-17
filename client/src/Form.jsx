@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Headbar from "./Headbar";
 import "./Form.css";
 
+axios.defaults.withCredentials = true;
+
 class addForm extends Component {
 
   constructor(props) {

@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Headbar from "./Headbar";
 import "./Post.css";
-  
+ 
+axios.defaults.withCredentials = true;
+
 class Post extends Component {
   constructor(props) {
     super(props);

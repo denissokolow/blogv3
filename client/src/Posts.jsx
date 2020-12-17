@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Posts.css";
 
+axios.defaults.withCredentials = true;
+
 class Posts extends Component {
   constructor(props) {
     super(props);
@@ -37,8 +39,9 @@ class Posts extends Component {
       this.setState({ status: 'Заполните все поля' })
     }else {
       axios.get('http://localhost:3001/api/login/', { headers: { log: log, pas: pas } })
-        .then(dta => dta.data)
-        .then(param => {  
+      .then(dta => dta.data)
+      .then(param => {
+          console.log("сервер вернул", param);
           this.setState(param);
           setTimeout(() => this.setState({ status: '' }), 2000);
           this.props.status({ login: param.LogOn, user: param.user });
