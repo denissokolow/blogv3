@@ -38,8 +38,7 @@ class Posts extends Component {
     }else {
       axios.get('http://localhost:3001/api/login/', { headers: { log: log, pas: pas } })
         .then(dta => dta.data)
-        .then(param => {
-          console.log("сервер вернул", param);
+        .then(param => {  
           this.setState(param);
           setTimeout(() => this.setState({ status: '' }), 2000);
           this.props.status({ login: param.LogOn, user: param.user });
