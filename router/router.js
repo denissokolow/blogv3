@@ -1,7 +1,7 @@
 
 const express = require('express');
-const checkAuth = require ('../middleware/checkAuth');
 const router = express.Router();
+const checkAuth = require ('../middleware/checkAuth');
 const getPosts = require('../controllers/get-posts.js');
 const getPost = require('../controllers/get-post.js');
 const createPost = require('../controllers/create-post.js');
@@ -11,19 +11,22 @@ const register = require('../controllers/register.js');
 
 router
     .route('/api/posts/:username')
-    .get(getPosts)
+    .get( (req, res, next) => {
+        console.log("req из роута", req.sessionID)
+        if (req.session.auth === true) return next();
+        res.redirect('/');}, getPost)
 router
     .route('/api/posts/')   
-    .post(checkAuth, createPost)
+    .post(createPost)
 router
     .route('/api/post/:_id')
-    .get(getPost)
-    .delete(checkAuth, deletePost)
+    .get(checkAuth, getPost)
+    .delete(deletePost)
 router
     .route('newpost/')
 router
     .route('/api/login/')
-    .get((req,res) => res.send("в роут приходит"))
+    .get(login)
 router
     .route('/api/login/')   
     .post(register)

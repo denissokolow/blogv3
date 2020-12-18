@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Posts.css";
 
-axios.defaults.withCredentials = true;
-
 class Posts extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +30,6 @@ class Posts extends Component {
       this.setState({ posts: newposts });
     }
   }
-
 
   loginTryOn = (log, pas) => {
     if (log == '' || pas == '') {
