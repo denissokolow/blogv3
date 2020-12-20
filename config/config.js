@@ -1,7 +1,7 @@
 module.exports = {
 
     KEY: "avocadoblog",
-    MONGO: "bloger:123@84.38.180.19/blog",
-    SERVER: "http://localhost:3001/api/posts"
+    MONGO: "mongodb://bloger:bloger321@45.67.58.188/blog",
+    SERVER: "http://localhost:3001"
     
 }
