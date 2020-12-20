@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Headbar from "./Headbar";
+import {SERVER} from "./config/config"
 import "./Post.css";
 
 class Post extends Component {
@@ -23,19 +24,19 @@ class Post extends Component {
 
   postDelete = (id) => {
     this.setState({redir: true});
-    axios.delete(`http://localhost:3001/api/post/${id}`, { id });
+    axios.delete(`${SERVER}/api/post/${id}`, { id });
     }
   
   renderPost = async() => {
       console.log(this.props.location.state.id);
       const id = this.props.location.state.id;
-      await axios.get(`http://localhost:3001/api/post/${id}`, {id})
+      await axios.get(`${SERVER}/api/post/${id}`, {id})
       .then(post => this.setState(post.data)); 
   }
   
   componentDidUpdate() {
     if (this.state.redir) {
-      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+      axios.get(`${SERVER}/api/posts/${this.props.username}`)
       .then(res => res.data)
       .then(posts => this.setState({ posts }));
     }

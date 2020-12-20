@@ -1,3 +1,4 @@
+@media (max-width: 1920px){
 .wrapper-post{
         display: flex;
         width: 50%;
@@ -34,7 +35,7 @@
         margin: 3px;
         padding: 2px;
         height: auto;
-        min-height: 300px;
+        min-height: 200px;
         border-radius: 5px;
         overflow: hidden;
         box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
@@ -71,4 +72,21 @@
         margin: 1px;
         margin-left: 2%;
         box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+}
+}
+@media (max-width: 425px){
+        .wrapper-post{
+                display: flex;
+                width: 80%;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                margin: 15px auto 15px;
+                padding: 2px;
+                border-radius: 5px; 
+                height: auto;
+                box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+                background: rgb(178, 204, 125);
+                font-family: Arial, Helvetica, sans-serif;
+
+}
 }

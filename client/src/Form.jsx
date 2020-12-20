@@ -3,6 +3,7 @@ import axios from "axios";
 import { Redirect } from "react-router";
 import { connect } from 'react-redux';
 import Headbar from "./Headbar";
+import {SERVER} from "./config/config"
 import "./Form.css";
 
 class addForm extends Component {
@@ -28,7 +29,7 @@ class addForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3001/api/posts',{
+    axios.post(`${SERVER}/api/posts/`,{
       author: this.state.author,
       date: `${(new Date()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ", " + (new Date()).toLocaleDateString()}`,
       title: this.state.title,
@@ -45,7 +46,7 @@ class addForm extends Component {
   
   componentDidUpdate() {
     if (this.state.validate) {
-      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+      axios.get(`${SERVER}/api/posts/${this.props.username}`)
       .then(res => res.data)
       .then(posts => this.setState({ posts }));
     }

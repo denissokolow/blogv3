@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { status as statusLogin } from './actions/auth';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {SERVER} from "./config/config"
 import "./Posts.css";
 
 class Posts extends Component {
@@ -23,7 +24,7 @@ class Posts extends Component {
   }
 
   postDelete = (id) => {
-    axios.delete(`http://localhost:3001/api/post/${id}`, { id });
+    axios.delete(`${SERVER}/api/post/${id}`, { id });
     if (this.state.posts.length >= 0) {
       const oldposts = this.state.posts;
       const newposts = oldposts.filter(i => i._id !== id);
@@ -32,17 +33,16 @@ class Posts extends Component {
   }
 
   loginTryOn = (log, pas) => {
-    if (log == '' || pas == '') {
+    if (log === '' || pas === '') {
       this.setState({ status: 'Заполните все поля' })
     }else {
-      axios.get('http://localhost:3001/api/login/', { headers: { log: log, pas: pas } })
+      axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
       .then(dta => dta.data)
       .then(param => {
-          console.log("сервер вернул", param);
           this.setState(param);
           setTimeout(() => this.setState({ status: '' }), 2000);
           this.props.status({ login: param.LogOn, user: param.user });
-          axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+          axios.get(`${SERVER}/api/posts/${this.props.username}`)
             .then(res => res.data)
             .then(posts => this.setState({ posts }));
         })
@@ -50,12 +50,12 @@ class Posts extends Component {
   }
 
   regTry = (log, pas) => {
-    if (log == '' || pas == '') {
+    if (log === '' || pas === '') {
       this.setState({ status: 'Заполните все поля' })
     } else if (log.length > 10 || pas.length > 10) {
       this.setState({ status: 'Логин и пароль должны быть не длиннее 10 символов' })
     } else {
-      axios.post(`http://localhost:3001/api/login/`, { log, pas })
+      axios.post(`${SERVER}/api/login/`, { log, pas })
         .then(dta => {
           this.setState(dta.data);
           setTimeout(() => this.setState({ status: '' }), 2000);
@@ -65,7 +65,7 @@ class Posts extends Component {
 
   componentDidMount() {
     if (this.state.posts.length >= 0) {
-      axios.get(`http://localhost:3001/api/posts/${this.props.username}`)
+      axios.get(`${SERVER}/api/posts/${this.props.username}`)
         .then(res => res.data)
         .then(posts => this.setState({ posts }));
     }

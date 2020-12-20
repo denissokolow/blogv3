@@ -11,16 +11,13 @@ const register = require('../controllers/register.js');
 
 router
     .route('/api/posts/:username')
-    .get( (req, res, next) => {
-        console.log("req из роута", req.sessionID)
-        if (req.session.auth === true) return next();
-        res.redirect('/');}, getPost)
+    .get(getPosts)
 router
     .route('/api/posts/')   
     .post(createPost)
 router
     .route('/api/post/:_id')
-    .get(checkAuth, getPost)
+    .get(getPost)
     .delete(deletePost)
 router
     .route('newpost/')

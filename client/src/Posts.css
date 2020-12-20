@@ -1,7 +1,155 @@
 .posts{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.pole{
+display: flex;
+justify-content: center;
+}
+.wrapper-posts{
+    display: flex;
+    width: 30%;
+    min-width: 30%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 15px auto 15px;
+    padding: 2px;
+    border-radius: 5px; 
+    height: 260px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+    background: rgb(178, 204, 125);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper-posts:hover{
+display: flex;
+width: 30%;
+flex-wrap: wrap;
+align-content: flex-start;
+margin: 15px auto 15px;
+padding: 2px;
+border-radius: 5px; 
+height: 260px;
+box-shadow: 0 15px 15px rgba(0,0,0,0.25);
+background:  rgb(178, 204, 125);
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.nameplate-posts-div{
+display: flex;
+flex-wrap: wrap;
+width: 98%;
+margin: 3px;
+border-radius: 6px;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+background: rgb(255,218,185);
+}  
+
+.nameplate-posts{
+display: flex;
+width: 98%;
+margin: 3px;
+height: 17px;
+overflow: hidden;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+
+}        
+.text-pole-posts{
+display: flex;
+width: 98%;
+margin: 3px;
+padding: 2px;
+height: 67.5%;
+border-radius: 6px;
+overflow: hidden;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+background: rgb(255,218,185);
+}
+
+.button-div{
+display: flex;
+justify-content: space-between;
+width: 100%;
+height: auto;
+}
+
+.delete-posts{
+display: flex;
+justify-content: center;
+border: 0;
+width:  50px;
+height: 21px;
+background: rgb(102, 51, 51);
+color: wheat;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+border-radius: 5px;
+font-size: 19px;
+padding: 2px;
+margin: 1px;
+margin-left: 5%;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+
+}
+.delete-posts:hover{
+display: flex;
+justify-content: center;
+border: 0;
+width:  50px;
+height: 20px;
+background: rgb(102, 51, 51);
+color: wheat;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+border-radius: 5px;
+font-size: 20px;
+padding: 2px;
+margin: 1px;
+margin-left: 5%;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+font-weight: bold;
+}
+.detail-posts{
+display: flex;
+text-decoration: none;
+justify-content: center;
+border: 0;
+width:  50px;
+height: 19px;
+background: rgb(102, 51, 51);
+color: wheat;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+border-radius: 5px;
+font-size: 19px;
+padding-top: 1.5px;
+margin: 1px;
+margin-right: 5%;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+}
+.detail-posts:hover{
+display: flex;
+text-decoration: none;
+justify-content: center;
+border: 0;
+width:  50px;
+height: 19px;
+background: rgb(102, 51, 51);
+color: wheat;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+border-radius: 5px;
+font-size: 20px;
+padding-top: 1.5px;
+margin: 1px;
+margin-right: 5%;
+box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+font-weight: bold; 
+}
+@media (max-width: 1920px){
+.posts{
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
+        min-width: 80%;
+        max-width: 80%;
 }
 .pole{
     display: flex;
@@ -142,4 +290,42 @@
     margin-right: 5%;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
     font-weight: bold; 
+}
+}
+@media (max-width: 425px){
+    .posts{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        max-width: 80%;
+}
+.wrapper-posts{
+    display: flex;
+    width: 30%;
+    min-width: 80%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 15px auto 15px;
+    padding: 2px;
+    border-radius: 5px; 
+    height: 260px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+    background: rgb(178, 204, 125);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper-posts:hover{
+    display: flex;
+    width: 30%;
+    min-width: 80%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 15px auto 15px;
+    padding: 2px;
+    border-radius: 5px; 
+    height: 260px;
+    box-shadow: 0 15px 15px rgba(0,0,0,0.25);
+    background:  rgb(178, 204, 125);
+    font-family: Arial, Helvetica, sans-serif;
+}
 }

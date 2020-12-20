@@ -25,9 +25,9 @@ class Headbar extends Component {
         </Link>
       </div>
       : <div className = "img-div"> 
-            <img src= { logo } /> 
+            <img src= { logo } alt="Avocato Cat"/> 
         <div className = "title-div">
-            Avo.cat.o Blog
+            Avocato Blog
         </div>
         </div> 
       }

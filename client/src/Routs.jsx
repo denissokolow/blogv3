@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App';
 import Form from './Form';
 import Post from "./Post"
-import Posts from './Posts';
 
 const Routs = () => {
     return (
