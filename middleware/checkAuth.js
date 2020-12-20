@@ -1,11 +1,14 @@
 module.exports = async (req, res, next) => {
-    console.log("значение сессии в чеке", req.sessionStore.sessions)
+    console.log("авторизация в чеке", req.session.auth)
+    console.log("юзернейм в чеке", req.session.name)
     if (req.session.auth) {
         console.log("сессия есть")
-        next();
-        } else {
+        res.redirect(`/api/posts/${req.session.name}`)
+    
+    } else {
         console.log("сессии нет")
-        res.redirect('/');
+        console.log(__dirname)
+        res.sendFile('index.html', { root: './client/build' })
         }
 };
 

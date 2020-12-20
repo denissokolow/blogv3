@@ -10,6 +10,11 @@ const login = require('../controllers/login.js');
 const register = require('../controllers/register.js');
 
 router
+     .route('/')
+           .get(checkAuth, (req, res) => {
+                                   console.log("был в роуте /")   
+                                   res.sendFile(__dirname + '/index.html')})
+router
     .route('/api/posts/:username')
     .get(getPosts)
 router

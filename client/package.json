@@ -1,6 +1,6 @@
 {
-  "proxy": "http://localhost:3000",
-  "name": "blogv2",
+  
+  "name": "AvocadoBlog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
