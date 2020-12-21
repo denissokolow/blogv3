@@ -10,14 +10,13 @@ const PORT = 3001;
 
 
 app
-  //.use(express.static('./client/build'))
+  .use(express.static('./client/build'))
   .use(cors())
   .use(parser.json())
   .use(parser.urlencoded({ extended: true })) 
   .use(session({
     secret: 'secretWord',
     key: 'key',
-    maxAge: 60000,
     saveUninitialized: true,
     resave: true,
     httpOnly: false
