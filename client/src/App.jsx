@@ -1,14 +1,14 @@
 
 import React from 'react';
 import Headbar from './Headbar';
-import Posts from './Posts';
+import Home from './Home';
 
 
 const App = () => {
     return (
       <div>
         <Headbar />
-        <Posts />    
+        <Home />    
       </div>
     );
   };

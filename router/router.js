@@ -10,18 +10,18 @@ const login = require('../controllers/login.js');
 const register = require('../controllers/register.js');
 
 router
-    .route('/')
-    .get(checkAuth, r => r.res.redirect(``))
+     .route('/')
+     .get(checkAuth, getPosts)
 router
     .route('/api/posts/:username')
-    .get(checkAuth, getPosts)
+    .get(getPosts)
 router
     .route('/api/posts/')   
-    .post(checkAuth,createPost)
+    .post(createPost)
 router
     .route('/api/post/:_id')
-    .get(checkAuth,getPost)
-    .delete(checkAuth,deletePost)
+    .get(getPost)
+    .delete(deletePost)
 router
     .route('newpost/')
 router
@@ -29,6 +29,6 @@ router
     .get(login)
 router
     .route('/api/login/')   
-    .post(checkAuth,register)
+    .post(register)
 
 module.exports = router;

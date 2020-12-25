@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { status as statusLogin } from './actions/auth';
 import { Link } from 'react-router-dom';
+import Localbase from 'localbase';
 import axios from 'axios';
-import {SERVER} from "./config/config"
+import {SERVER} from "./config/config";
 import "./Posts.css";
+
+let db = new Localbase('blog');
 
 class Posts extends Component {
   constructor(props) {
@@ -19,7 +22,7 @@ class Posts extends Component {
       status: '',
       author: ''
     };
-    this.regTry = this.regTry.bind(this);
+    //this.regTry = this.regTry.bind(this);
     this.postDelete = this.postDelete.bind(this);
   }
 
@@ -32,7 +35,7 @@ class Posts extends Component {
     }
   }
 
-  loginTryOn = (log, pas) => {
+ /* loginTryOn = (log, pas) => {
     if (log === '' || pas === '') {
       this.setState({ status: 'Заполните все поля' })
     }else {
@@ -42,10 +45,11 @@ class Posts extends Component {
           this.setState(param);
           setTimeout(() => this.setState({ status: '' }), 2000);
           this.props.status({ login: param.LogOn, user: param.user });
+          db.collection('dbUser').set([{ auth: param.LogOn, name: param.user }]).then(console.log("DB user из логина"));
           axios.get(`${SERVER}/api/posts/${this.props.username}`)
             .then(res => res.data)
-            .then(posts => this.setState({ posts }));
-        })
+            .then(posts => this.setState({posts})   
+        )})
     }
   }
 
@@ -61,13 +65,19 @@ class Posts extends Component {
           setTimeout(() => this.setState({ status: '' }), 2000);
         })
     }
-  }
+  }*/
 
   componentDidMount() {
+    console.log('в постс');
     if (this.state.posts.length >= 0) {
       axios.get(`${SERVER}/api/posts/${this.props.username}`)
         .then(res => res.data)
-        .then(posts => this.setState({ posts }));
+        .then(posts => {
+          this.setState({ posts })
+          db.collection('dbPosts').set( posts );
+          //db.collection('dbPosts').get().then( dbPosts => {console.log("вся база:  ", dbPosts )});
+        }
+        );
     }
   }
   render() {
@@ -105,7 +115,7 @@ class Posts extends Component {
               </div>
             )}
           </div>
-          : <form className="login-div">
+          : null /*<form className="login-div">
             <input
               className="login"
               name="login"
@@ -141,7 +151,7 @@ class Posts extends Component {
               className="reg-button"
             > register</button>
             <div className="status">{this.state.status}</div>
-          </form>
+          </form>*/
         }
       </div>
     );

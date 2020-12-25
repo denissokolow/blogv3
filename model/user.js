@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {MONGO} = require("../config/config")
+const {MONGO} = require('../config/config');
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
