@@ -26,7 +26,7 @@ class Posts extends Component {
     this.postDelete = this.postDelete.bind(this);
   }
 
-  postDelete = (id) => {//это при рендере???
+  postDelete = (id) => {
     axios.delete(`${SERVER}/post/${id}`, { id });
     if (this.state.posts.length >= 0) {
       const oldposts = this.state.posts;
@@ -64,6 +64,17 @@ class Posts extends Component {
     }
   }*/
 
+  componentDidUpdate() {
+    console.log('в постс');
+    if (this.state.posts.length >= 0) {
+      axios.get(`${SERVER}/posts/${this.props.username}`)
+        .then(res => res.data)
+        .then(posts => {
+          this.setState({ posts })
+        }
+        );
+    }
+  }
   componentDidMount() {
     console.log('в постс');
     if (this.state.posts.length >= 0) {
