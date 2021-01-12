@@ -4,19 +4,19 @@ import App from './App';
 import Form from './Form';
 import Posts from './Posts';
 import Post from './Post';
+import Home from './Home';
 
 const Routs = () => {
     return (
-      <section>
-        <Router> 
-          <Switch>
-              <Route path="/newpost" component={Form} />
-              <Route path="/posts" component={Posts} />
+        <Router>
+          <Switch> 
               <Route exact path="/" component= {App} />
-              <Route path="/api/posts/" component= {Post}  />        
+              <Route path="/newpost" component= {Form} />
+              <Route path="/posts/:username" component= {Posts} />
+              <Route path="/post/:_id" component= {Post}/>  
           </Switch>
         </Router>     
-      </section>
+    
     );
   };
 

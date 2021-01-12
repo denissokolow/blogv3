@@ -52,8 +52,9 @@ class addForm extends Component {
     }
   }
   
-  render() {  
-    if (this.state.validate) {return <Redirect push to="/" />}
+  render() {
+    
+    if (this.state.validate) {return <Redirect push to= "/" />}
     const { username } = this.props;
     this.state.author =  username;
     return (

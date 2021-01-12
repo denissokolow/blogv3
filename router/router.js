@@ -10,18 +10,15 @@ const login = require('../controllers/login.js');
 const register = require('../controllers/register.js');
 
 router
-     .route('/')
-     .get(checkAuth, getPosts)
-router
-    .route('/api/posts/:username')
+    .route('/posts/:username')
     .get(getPosts)
+router
+    .route('/post/:_id')
+    .get(getPost)
+    .delete(deletePost)
 router
     .route('/api/posts/')   
     .post(createPost)
-router
-    .route('/api/post/:_id')
-    .get(getPost)
-    .delete(deletePost)
 router
     .route('newpost/')
 router
@@ -30,5 +27,6 @@ router
 router
     .route('/api/login/')   
     .post(register)
+
 
 module.exports = router;

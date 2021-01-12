@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { status as statusLogin } from './actions/auth';
-import { Link } from 'react-router-dom';
-import Localbase from 'localbase';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Posts from './Posts';
 import {SERVER} from "./config/config";
-
-let db = new Localbase('blog');
 
 class Home extends Component { 
     constructor(props) {
         super(props);
         this.state = {
+          posts: [],
             LogOn: false,
             user: '',
             login: '',
@@ -31,10 +29,6 @@ class Home extends Component {
               setTimeout(() => this.setState({ status: '' }), 2000);
               this.props.status({ login: param.LogOn, user: param.user });
               console.log("login удачный, в редаксе: ", this.props.username )
-              db.collection('dbUser').set([{ auth: param.LogOn, name: param.user }]).then(console.log("DB user из логина"));
-              //axios.get(`${SERVER}/api/posts/${this.props.username}`)
-                //.then(res => res.data)
-                //.then(posts => this.setState({posts})   
           })
         }
       }
@@ -58,7 +52,7 @@ class Home extends Component {
         const { username } = this.props;
         return (
           <div className="pole">
-           { loginOnOff ?
+           { !loginOnOff ?
             <form className="login-div">
             <input
               className="login"
@@ -67,7 +61,7 @@ class Home extends Component {
               ref={ref => this.login = ref}
               type="text"
               placeholder="login"
-              required />
+              required /> 
             <button
               onClick={() => {
                 const log = `${this.login.value}`
@@ -85,6 +79,7 @@ class Home extends Component {
               type="password"
               placeholder="password"
               required />
+              
             <button
               onClick={() => {
                 const log = `${this.login.value}`
@@ -95,7 +90,8 @@ class Home extends Component {
               className="reg-button"
             > register</button>
             <div className="status">{this.state.status}</div>
-          </form>: < Posts />}
+          </form>: <Posts />
+          }          
       </div>
         )
     }

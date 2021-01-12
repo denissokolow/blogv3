@@ -2,6 +2,7 @@
 import React from 'react';
 import Headbar from './Headbar';
 import Home from './Home';
+import Posts from './Posts';
 
 
 const App = () => {

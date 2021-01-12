@@ -24,13 +24,13 @@ class Post extends Component {
 
   postDelete = (id) => {
     this.setState({redir: true});
-    axios.delete(`${SERVER}/api/post/${id}`, { id });
+    axios.delete(`${SERVER}/post/${id}`, { id });
     }
   
   renderPost = async() => {
       console.log(this.props.location.state.id);
       const id = this.props.location.state.id;
-      await axios.get(`${SERVER}/api/post/${id}`, {id})
+      await axios.get(`${SERVER}/post/${id}`, {id})
       .then(post => this.setState(post.data)); 
   }
   

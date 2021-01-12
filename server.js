@@ -10,7 +10,7 @@ const key = require('./config/config');
 const PORT = 3001;
 
 app
-  .use(express.static(path.join(__dirname, '/client/build')))
+
   .use(cors())
   .use(parser.json())
   .use(parser.urlencoded({ extended: true }))
@@ -22,7 +22,10 @@ app
     resave: true
   }))
   .use(router)
-  //.get('/', function (req, res) {
-   // res.sendFile(path.join(__dirname, '/client/build', 'main.html'))})
+  //.use(express.static(path.join(__dirname, '/public')))
+  .use(express.static(path.join(__dirname, '/client/build')))
+  
+  .get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'))})
   .listen(process.env.PORT || PORT, () => console.log(process.pid));
   
