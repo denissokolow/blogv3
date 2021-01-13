@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { status as statusLogin } from './actions/auth';
 import { Link } from 'react-router-dom';
-import Localbase from 'localbase';
 import axios from 'axios';
 import {SERVER} from "./config/config";
 import "./Posts.css";
-
-let db = new Localbase('blog');
 
 class Posts extends Component {
   constructor(props) {
@@ -22,66 +19,50 @@ class Posts extends Component {
       status: '',
       author: ''
     };
-    //this.regTry = this.regTry.bind(this);
     this.postDelete = this.postDelete.bind(this);
   }
 
   postDelete = (id) => {
     axios.delete(`${SERVER}/post/${id}`, { id });
-    if (this.state.posts.length >= 0) {
-      const oldposts = this.state.posts;
-      const newposts = oldposts.filter(i => i._id !== id);
-      this.setState({ posts: newposts });
-    }
+    setTimeout(() => {
+    axios.get(`${SERVER}/posts/${this.props.username}`)
+        .then(res => res.data)
+        .then(posts => {
+          console.log("del update posts from server ", posts)  
+          this.setState({ posts })
+          localStorage.setItem('posts', `${JSON.stringify(this.state.posts)}`)
+          })
+      }, 100);
   }
-
-  /*loginTryOn = (log, pas) => {
-    if (log === '' || pas === '') {
-      this.setState({ status: 'Заполните все поля' })
-    }else {
-      axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
-      .then(dta => dta.data)
-      .then(param => {
-          this.setState(param);
-          setTimeout(() => this.setState({ status: '' }), 2000);
-          this.props.status({ login: param.LogOn, user: param.user });
-          console.log("login удачный, в редаксе: ", this.props.username )
-      })
-    }
-  }
-
-  regTry = (log, pas) => {
-    if (log === '' || pas === '') {
-      this.setState({ status: 'Заполните все поля' })
-    } else if (log.length > 10 || pas.length > 10) {
-      this.setState({ status: 'Логин и пароль должны быть не длиннее 10 символов' })
-    } else {
-      axios.post(`${SERVER}/api/login/`, { log, pas })
-        .then(dta => {
-          this.setState(dta.data);
-          setTimeout(() => this.setState({ status: '' }), 2000);
-        })
-    }
-  }*/
 
   componentDidUpdate() {
-    console.log('в постс');
-    if (this.state.posts.length >= 0) {
-      axios.get(`${SERVER}/posts/${this.props.username}`)
+    //console.log('в posts update');
+    //const lbPosts = JSON.parse(localStorage.getItem('posts'));
+    //console.log("длина стейта ", this.state.posts.length,"длина локалбеза ", lbPosts.length);
+    axios.get(`${SERVER}/posts/${this.props.username}`)
         .then(res => res.data)
         .then(posts => {
+          if (posts.length > this.state.posts.length){
+          console.log("update posts from server")  
           this.setState({ posts })
-        }
-        );
+          localStorage.setItem('posts', `${JSON.stringify(this.state.posts)}`)
+          //console.log("длина стейта ", this.state.posts.length,"длина локалбеза ", lbPosts.length);
+          }
+      })
     }
-  }
   componentDidMount() {
-    console.log('в постс');
+    console.log('в posts mount');
+    //const lbPosts = JSON.parse(localStorage.getItem('posts'));
+    /*if (lbPosts){
+      console.log("download posts from lb")
+      this.setState({ "posts": lbPosts })
+    }else*/ 
     if (this.state.posts.length >= 0) {
       axios.get(`${SERVER}/posts/${this.props.username}`)
         .then(res => res.data)
         .then(posts => {
           this.setState({ posts })
+          localStorage.setItem('posts', `${JSON.stringify(this.state.posts)}`)
         }
         );
     }
@@ -92,10 +73,9 @@ class Posts extends Component {
     const { username } = this.props;
     return (
       <div className="pole">
-        { loginOnOff ?
         <div className="Posts" >
         {this.state.posts.slice(0).reverse().map(post =>
-          <div key={post.id} className="wrapper-posts">
+          <div key={post._id} className="wrapper-posts">
             <div className="nameplate-posts-div">
               <div className="nameplate-posts">
                 <b>Date:</b> &nbsp; {post.date}
@@ -121,54 +101,10 @@ class Posts extends Component {
             </div>
           </div>
         )}
-      </div>:
-        <form className="login-div">
-        <input
-          className="login"
-          name="login"
-          maxLength="15"
-          ref={ref => this.login = ref}
-          type="text"
-          placeholder="login"
-          required /> 
-        <button
-          onClick={() => {
-            const log = `${this.login.value}`
-            const pas = `${this.password.value}`
-            this.loginTryOn(log, pas)
-          }}
-          type="button"
-          className="login-button"
-        > login </button>
-        <input
-          className="password"
-          name="password"
-          maxLength="15"
-          ref={ref => this.password = ref}
-          type="password"
-          placeholder="password"
-          required />
-          
-        <button
-          onClick={() => {
-            const log = `${this.login.value}`
-            const pas = `${this.password.value}`
-            this.regTry(log, pas)
-          }}
-          type="button"
-          className="reg-button"
-        > register</button>
-        <div className="status">{this.state.status}</div>
-      </form>
-          
-  }
-          
-        
+      </div>
       </div>
     );
-
   };
-
 }
 
 const mapStateToProps = state => ({

@@ -4,7 +4,6 @@ import App from './App';
 import Form from './Form';
 import Posts from './Posts';
 import Post from './Post';
-import Home from './Home';
 
 const Routs = () => {
     return (

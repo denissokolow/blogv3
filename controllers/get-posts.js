@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
             //console.log(posts);
             
             const posts = await Blog.find({"author" : req.params.username});
-            console.log("polucheno", {posts});
             res.json(posts) 
     } 
 

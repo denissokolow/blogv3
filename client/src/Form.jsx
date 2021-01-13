@@ -40,23 +40,14 @@ class addForm extends Component {
       date: '',
       title:'',
       content: '',
-      validate: true
+      sended: true
      });
   }
   
-  componentDidUpdate() {
-    if (this.state.validate) {
-      axios.get(`${SERVER}/api/posts/${this.props.username}`)
-      .then(res => res.data)
-      .then(posts => this.setState({ posts }));
-    }
-  }
-  
   render() {
-    
-    if (this.state.validate) {return <Redirect push to= "/" />}
     const { username } = this.props;
     this.state.author =  username;
+    if (this.state.sended) {return <Redirect push to= "/" />}
     return (
       <div> 
         <Headbar />  

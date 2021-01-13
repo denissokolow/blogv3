@@ -25,9 +25,11 @@ class Home extends Component {
           axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
           .then(dta => dta.data)
           .then(param => {
+              console.log(param);
               this.setState(param);
               setTimeout(() => this.setState({ status: '' }), 2000);
               this.props.status({ login: param.LogOn, user: param.user });
+              localStorage.setItem('user', `${this.props.username}`)
               console.log("login удачный, в редаксе: ", this.props.username )
           })
         }
@@ -45,6 +47,14 @@ class Home extends Component {
               setTimeout(() => this.setState({ status: '' }), 2000);
             })
         }
+      }
+      componentDidMount() {
+      const lbUser = localStorage.getItem('user');
+      if (lbUser) {
+        console.log('authorisation from lb')
+        this.setState({status: "Авторизация успешна", user: `${lbUser}`, LogOn: true});
+        this.props.status({ login: true, user: lbUser });
+            }
       }
 
     render() {
