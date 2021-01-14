@@ -18,6 +18,7 @@ class Login extends Component {
     logOut = () => {
         this.setState({ LogOn: false, user: '', status: '' });
         this.props.status({ login: false, user: '' })
+        localStorage.clear()
     }
 
     render() {

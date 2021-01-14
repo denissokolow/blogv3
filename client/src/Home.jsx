@@ -10,7 +10,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          posts: [],
+            posts: [],
             LogOn: false,
             user: '',
             login: '',
@@ -25,21 +25,24 @@ class Home extends Component {
           axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
           .then(dta => dta.data)
           .then(param => {
-              console.log(param);
               this.setState(param);
-              setTimeout(() => this.setState({ status: '' }), 2000);
-              this.props.status({ login: param.LogOn, user: param.user });
-              localStorage.setItem('user', `${this.props.username}`)
-              console.log("login удачный, в редаксе: ", this.props.username )
-          })
-        }
-      }
+              if (param.user) {
+                localStorage.setItem('user', param.user)
+                }
+              setTimeout(() => {
+              this.setState({ status: '' }); 
+              this.props.status({ login: param.LogOn, user: param.user })
+              }, 1500); 
+          });
+      }}
     
       regTry = (log, pas) => {
         if (log === '' || pas === '') {
           this.setState({ status: 'Заполните все поля' })
         } else if (log.length > 10 || pas.length > 10) {
           this.setState({ status: 'Логин и пароль должны быть не длиннее 10 символов' })
+        } else if (log.length < 3 || pas.length < 3) {
+          this.setState({ status: 'Логин и пароль должны быть длиннее 3 символов' })
         } else {
           axios.post(`${SERVER}/api/login/`, { log, pas })
             .then(dta => {
@@ -52,7 +55,7 @@ class Home extends Component {
       const lbUser = localStorage.getItem('user');
       if (lbUser) {
         console.log('authorisation from lb')
-        this.setState({status: "Авторизация успешна", user: `${lbUser}`, LogOn: true});
+        this.setState({user: `${lbUser}`, LogOn: true});
         this.props.status({ login: true, user: lbUser });
             }
       }
