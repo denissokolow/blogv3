@@ -11,14 +11,14 @@ const register = require('../controllers/register.js');
 
 router
     .route('/posts/:username')
-    .get(getPosts)
+    .get(checkAuth, getPosts)
 router
     .route('/post/:_id')
-    .get(getPost)
-    .delete(deletePost)
+    .get(checkAuth, getPost)
+    .delete(checkAuth, deletePost)
 router
     .route('/api/posts/')   
-    .post(createPost)
+    .post(checkAuth, createPost)
 router
     .route('newpost/')
 router

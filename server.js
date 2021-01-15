@@ -6,7 +6,7 @@ const app = express();
 const parser = require('body-parser');
 const session	= require('express-session');
 const router = require('./router/router');
-const key = require('./config/config');
+const KEY = require('./config/config');
 const PORT = 3001;
 
 app
@@ -15,16 +15,14 @@ app
   .use(parser.json())
   .use(parser.urlencoded({ extended: true }))
   .use(session({
-    secret: 'secretWord',
+    secret: `${KEY}`,
     key: 'key',
     cookie: {  httpOnly: false },
     saveUninitialized: true,
     resave: true
   }))
   .use(router)
-  //.use(express.static(path.join(__dirname, '/public')))
   .use(express.static(path.join(__dirname, '/client/build')))
-  
   .get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '/client/build', 'index.html'))})
   .listen(process.env.PORT || PORT, () => console.log(process.pid));
