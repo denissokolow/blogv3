@@ -25,7 +25,7 @@ class Home extends Component {
           axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
           .then(dta => dta.data)
           .then(param => {
-              this.setState(param);
+              this.setState({param});
               if (param.user) {
                 localStorage.setItem('user', param.user)
                 }
