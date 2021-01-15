@@ -7,10 +7,9 @@ const parser = require('body-parser');
 const session	= require('express-session');
 const router = require('./router/router');
 const KEY = require('./config/config');
-const PORT = 3001;
+const PORT = 80;
 
 app
-
   .use(cors())
   .use(parser.json())
   .use(parser.urlencoded({ extended: true }))
