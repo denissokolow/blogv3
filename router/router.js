@@ -23,9 +23,12 @@ router
     .route('newpost/')
 router
     .route('/api/login/')
-    .get(login)
+    .post(login)
 router
-    .route('/api/login/')   
+    .route('/api/register/')
+    .post(register)
+router
+    .route('/api/register/')   
     .post(register)
 
 

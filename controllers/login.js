@@ -2,8 +2,8 @@ const User = require('../model/user.js');
 const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {
-    const login = req.headers.log;
-    const password = req.headers.pas;
+    const login = req.body.log;
+    const password = req.body.pas;
     const user = await User.findOne({ "login": login});
     
     if (user){          

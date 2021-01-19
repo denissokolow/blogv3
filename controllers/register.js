@@ -2,6 +2,7 @@ const User = require('../model/user.js');
 const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {
+    console.log(req)
     const login = req.body.log;
     const pass = req.body.pas;
     const user = await User.findOne({ "login": login });

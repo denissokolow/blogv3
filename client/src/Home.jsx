@@ -22,7 +22,7 @@ class Home extends Component {
         if (log === '' || pas === '') {
           this.setState({ status: 'Заполните все поля' })
         }else {
-          axios.get(`${SERVER}/api/login/`, { headers: { log: log, pas: pas } })
+          axios.post(`${SERVER}/api/login/`, { log, pas } )
           .then(dta => dta.data)
           .then(param => {
               this.setState({param});
@@ -44,8 +44,9 @@ class Home extends Component {
         } else if (log.length < 3 || pas.length < 3) {
           this.setState({ status: 'Логин и пароль должны быть длиннее 3 символов' })
         } else {
-          axios.post(`${SERVER}/api/login/`, { log, pas })
-            .then(dta => {
+          axios
+            .post(`${SERVER}/api/register/`, { log , pas})
+            .then(dta => {{}
               this.setState(dta.data);
               setTimeout(() => this.setState({ status: '' }), 2000);
             })
