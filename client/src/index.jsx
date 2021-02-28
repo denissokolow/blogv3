@@ -6,10 +6,10 @@ import Routs from './Routs';
 
 ReactDOM.render(
   <Provider store={store}>
-  <React.StrictMode>
+    <React.StrictMode>
       <Routs />
-  </React.StrictMode>
-  </Provider>, 
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 )
 

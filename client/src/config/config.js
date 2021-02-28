@@ -1,6 +1,6 @@
 module.exports = {
 
-    SERVER: "https://45.67.58.188"
+    SERVER: "https://sokolov.tech"
 
     
 }

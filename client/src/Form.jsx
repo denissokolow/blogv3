@@ -1,9 +1,9 @@
-import React, { Component } from "react";  
+import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
 import { connect } from 'react-redux';
 import Headbar from "./Headbar";
-import {SERVER} from "./config/config"
+import { SERVER } from "./config/config"
 import "./Form.css";
 
 class addForm extends Component {
@@ -11,78 +11,78 @@ class addForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  validate: false,
-                  author: '',
-                  date: '',
-                  title: '',
-                  content: ''
-                };
+      validate: false,
+      author: '',
+      date: '',
+      title: '',
+      content: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({
-       [event.target.name]: event.target.value
-      });
+      [event.target.name]: event.target.value
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${SERVER}/api/posts/`,{
+    axios.post(`${SERVER}/api/posts/`, {
       author: this.state.author,
-      date: `${(new Date()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ", " + (new Date()).toLocaleDateString()}`,
+      date: `${(new Date()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ", " + (new Date()).toLocaleDateString()}`,
       title: this.state.title,
       content: this.state.content,
-     });
-     this.setState ({   
+    });
+    this.setState({
       author: '',
       date: '',
-      title:'',
+      title: '',
       content: '',
       sended: true
-     });
+    });
   }
-  
+
   render() {
     const { username } = this.props;
-    this.state.author =  username;
-    if (this.state.sended) {return <Redirect push to= "/" />}
+    this.state.author = username;
+    if (this.state.sended) { return <Redirect push to="/" /> }
     return (
-      <div> 
-        <Headbar />  
+      <div>
+        <Headbar />
         <form className="form" onSubmit={this.handleSubmit}>
-          <input 
-                 className= "forminput"
-                 name="title"
-                 type="text" 
-                 value={this.state.title} 
-                 onChange={this.handleChange} 
-                 placeholder="title"/>
-          <br/><br/>    
+          <input
+            className="forminput"
+            name="title"
+            type="text"
+            value={this.state.title}
+            onChange={this.handleChange}
+            placeholder="title" />
+          <br /><br />
           <textarea
-                 className = "formtextpole"
-                 name="content"
-                 type="text" 
-                 value={this.state.content}  
-                 onChange={this.handleChange} 
-                 title={"Post text"}
-                 />
-          <br/><br/> 
-          <input 
-                className= "formButton"
-                type="submit" 
-                value="send" 
+            className="formtextpole"
+            name="content"
+            type="text"
+            value={this.state.content}
+            onChange={this.handleChange}
+            title={"Post text"}
           />
-        </form>  
+          <br /><br />
+          <input
+            className="formButton"
+            type="submit"
+            value="send"
+          />
+        </form>
       </div>
 
-    );  
+    );
   }
 }
 
 const mapStateToProps = state => ({
-   username: state.auth.user,
+  username: state.auth.user,
 });
 
-export default connect (mapStateToProps)(addForm);
+export default connect(mapStateToProps)(addForm);

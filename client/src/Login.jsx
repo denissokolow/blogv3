@@ -4,7 +4,7 @@ import { status as statusLogin } from './actions/auth';
 import "./Login.css";
 
 
-class Login extends Component { 
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {

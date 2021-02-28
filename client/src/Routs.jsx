@@ -6,17 +6,17 @@ import Posts from './Posts';
 import Post from './Post';
 
 const Routs = () => {
-    return (
-        <Router>
-          <Switch> 
-              <Route exact path="/" component= {App} />
-              <Route path="/newpost" component= {Form} />
-              <Route path="/posts/:username" component= {Posts} />
-              <Route path="/post/:_id" component= {Post}/>  
-          </Switch>
-        </Router>     
-    
-    );
-  };
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/newpost" component={Form} />
+        <Route path="/posts/:username" component={Posts} />
+        <Route path="/post/:_id" component={Post} />
+      </Switch>
+    </Router>
 
-  export default Routs;
+  );
+};
+
+export default Routs;

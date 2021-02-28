@@ -1,4 +1,4 @@
-import  update   from 'immutability-helper';
+import update from 'immutability-helper';
 import { AUTH_ON_OFF } from '../actions/types';
 
 
@@ -9,9 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     const { type } = action;
-    console.log('ACTION', action.payload);
-
-    switch (type){
+    switch (type) {
         case AUTH_ON_OFF:
             return update(state, {
                 login: { $set: action.payload.login },
@@ -20,7 +18,7 @@ const reducer = (state = initialState, action) => {
         default:
             return state;
     }
-       
+
 }
 
 export default reducer;
